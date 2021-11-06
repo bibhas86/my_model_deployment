@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+
 #from flask.wrappers import Request
 import marks as m
 
@@ -17,13 +18,24 @@ def marks():
 
     return render_template("index.html", my_marks = mp)
 
-# @app.route("/sub", methods = ['POST'])
-# def submit():
-#     if request.method == "POST":
-#         name = request.form["username" ]
 
-#     #.py -> Html
-#     return render_template("sub.html" , val_name = name )    
+
+@app.route("/sub", methods=['GET', 'POST'])
+def submit():
+    name = ""
+    if request.method == "POST":
+        name = request.form["username" ]
+    else:
+        name = "Bibhas"
+
+    #.py -> Html
+    return render_template("sub.html" , val_name = name )    
+                                      
+
+
+@app.route("/register", methods=['GET', 'POST'])
+def reg():
+    return render_template("register.html", val_name = "Bibhas")
 
 
 
